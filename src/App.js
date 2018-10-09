@@ -78,6 +78,20 @@ class App extends Component {
     });
   };
 
+  onSubmit4 = async event => {
+    event.preventDefault();
+    const accounts = await web3.eth.getAccounts();
+    this.setState({ message: `Approving your ticket...` });
+
+    await Route.methods.completeTrip(this.state.value7).send({
+      from: accounts[0]
+    });
+
+    this.setState({
+      message: `Trip Approved`
+    });
+  };
+
   render() {
     return (
       <div>
@@ -153,6 +167,22 @@ class App extends Component {
               placeholder="int"
               onChange={event => {
                 this.setState({ value6: event.target.value });
+              }}
+            />
+          </div>
+          <button>Enter</button>
+        </form>
+
+        <hr />
+        <h4>Complete Trip</h4>
+        <form onSubmit={this.onSubmit4}>
+          <div>
+            <label>Input ticket Number:</label>
+            <input
+              value7={this.state.value7}
+              placeholder="int"
+              onChange={event => {
+                this.setState({ value7: event.target.value });
               }}
             />
           </div>
