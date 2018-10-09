@@ -1,23 +1,15 @@
 import web3 from "./web3.js";
 
-const address = "0x2fCA6db231a8912cF3E852CE493aa86CCFa4cA42";
+const address = "0xCF01144d4Cb216DC360f2E9C4d38B95EBfe9d4D3";
 const abi = [
-  {
-    constant: true,
-    inputs: [],
-    name: "routeID",
-    outputs: [{ name: "", type: "string" }],
-    payable: false,
-    stateMutability: "view",
-    type: "function"
-  },
   {
     constant: false,
     inputs: [
-      { name: "description", type: "string" },
-      { name: "dateTime", type: "uint256" }
+      { name: "routeID", type: "string" },
+      { name: "count", type: "uint256" },
+      { name: "description", type: "bytes32[]" }
     ],
-    name: "createTrip",
+    name: "createRoute",
     outputs: [],
     payable: false,
     stateMutability: "nonpayable",
@@ -26,118 +18,20 @@ const abi = [
   {
     constant: true,
     inputs: [],
-    name: "manager",
+    name: "getDeployedRoutes",
+    outputs: [{ name: "", type: "address[]" }],
+    payable: false,
+    stateMutability: "view",
+    type: "function"
+  },
+  {
+    constant: true,
+    inputs: [{ name: "", type: "uint256" }],
+    name: "deployedRoutes",
     outputs: [{ name: "", type: "address" }],
     payable: false,
     stateMutability: "view",
     type: "function"
-  },
-  {
-    constant: true,
-    inputs: [{ name: "", type: "uint256" }],
-    name: "tickets",
-    outputs: [
-      { name: "travelDescription", type: "string" },
-      { name: "amount", type: "uint256" },
-      { name: "isUsed", type: "bool" }
-    ],
-    payable: false,
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    constant: true,
-    inputs: [],
-    name: "busStopCount",
-    outputs: [{ name: "", type: "uint256" }],
-    payable: false,
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    constant: false,
-    inputs: [{ name: "description", type: "string" }],
-    name: "purchaseTicket",
-    outputs: [{ name: "", type: "uint256" }],
-    payable: true,
-    stateMutability: "payable",
-    type: "function"
-  },
-  {
-    constant: false,
-    inputs: [{ name: "index", type: "uint256" }],
-    name: "completeTrip",
-    outputs: [],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    constant: false,
-    inputs: [
-      { name: "tripIndex", type: "uint256" },
-      { name: "ticketIndex", type: "uint256" }
-    ],
-    name: "approveTrip",
-    outputs: [],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    constant: true,
-    inputs: [{ name: "", type: "uint256" }],
-    name: "routeDescription",
-    outputs: [{ name: "", type: "bytes32" }],
-    payable: false,
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    constant: true,
-    inputs: [{ name: "", type: "uint256" }],
-    name: "trips",
-    outputs: [
-      { name: "tripDescription", type: "string" },
-      { name: "startDateTime", type: "uint256" },
-      { name: "amount", type: "uint256" },
-      { name: "approversCount", type: "uint256" },
-      { name: "isComplete", type: "bool" },
-      { name: "reportedArrivalTimes", type: "uint256" }
-    ],
-    payable: false,
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    constant: false,
-    inputs: [
-      { name: "tripIndex", type: "uint256" },
-      { name: "busStop", type: "bytes32" },
-      { name: "arrivalTime", type: "uint256" }
-    ],
-    name: "arrival",
-    outputs: [],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function"
-  },
-  {
-    inputs: [
-      { name: "creator", type: "address" },
-      { name: "route", type: "string" },
-      { name: "count", type: "uint256" },
-      { name: "description", type: "bytes32[]" }
-    ],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "constructor"
-  },
-  {
-    anonymous: false,
-    inputs: [{ indexed: false, name: "index", type: "uint256" }],
-    name: "ValueLogger",
-    type: "event"
   }
 ];
 
