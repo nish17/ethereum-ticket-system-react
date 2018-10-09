@@ -1,6 +1,6 @@
 import web3 from "./web3.js";
 
-const address = "0x9004F6AfCBb579CAfE8410552a59052D92C270F3";
+const address = "0x2fCA6db231a8912cF3E852CE493aa86CCFa4cA42";
 const abi = [
   {
     constant: true,
@@ -132,6 +132,12 @@ const abi = [
     payable: false,
     stateMutability: "nonpayable",
     type: "constructor"
+  },
+  {
+    anonymous: false,
+    inputs: [{ indexed: false, name: "index", type: "uint256" }],
+    name: "ValueLogger",
+    type: "event"
   }
 ];
 
