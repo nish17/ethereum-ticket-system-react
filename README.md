@@ -2,8 +2,6 @@
 
 ## to view locally run this command into your terminal `npm run start`
 
-## ---------------------------------------------------------------------------------
-
 ## Steps after coding the smart contract
 
 ### first deploy your smart contract to the rinkeby test network
@@ -15,5 +13,3 @@
 ### also paste the address of that smart contract in that file.
 
 ### now type the following command in the same file at the end `export default new web3.eth.Contract(ABI_of_the_contract, address_of_deployed_contract);`
-
-## ---------------------------------------------------------------------------------
