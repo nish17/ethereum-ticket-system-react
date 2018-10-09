@@ -59,6 +59,7 @@ class App extends Component {
   onSubmit3 = async event => {
     event.preventDefault();
     const accounts = await web3.eth.getAccounts();
+    let returnedValue;
     this.setState({ message: `Generating your ticket...` });
 
     await Route.methods
@@ -68,11 +69,165 @@ class App extends Component {
         value: web3.utils.toWei(this.state.value6, "ether")
       })
       .then(s => {
-        console.log("s=%d", s);
+        console.log(s);
+        returnedValue = s.events.ValueLogger.returnValues.index;
       });
 
-    this.setState({ message: `Ticket Purchased` });
+    this.setState({
+      message: `Ticket Purchased, and your ticket number is ${returnedValue}.`
+    });
   };
+
+  // getValueLogger() {
+  //   // const accounts = web3.eth.getAccounts();
+  //   const routeContract = new web3.eth.Contract([
+  //     {
+  //       constant: true,
+  //       inputs: [],
+  //       name: "routeID",
+  //       outputs: [{ name: "", type: "string" }],
+  //       payable: false,
+  //       stateMutability: "view",
+  //       type: "function"
+  //     },
+  //     {
+  //       constant: false,
+  //       inputs: [
+  //         { name: "description", type: "string" },
+  //         { name: "dateTime", type: "uint256" }
+  //       ],
+  //       name: "createTrip",
+  //       outputs: [],
+  //       payable: false,
+  //       stateMutability: "nonpayable",
+  //       type: "function"
+  //     },
+  //     {
+  //       constant: true,
+  //       inputs: [],
+  //       name: "manager",
+  //       outputs: [{ name: "", type: "address" }],
+  //       payable: false,
+  //       stateMutability: "view",
+  //       type: "function"
+  //     },
+  //     {
+  //       constant: true,
+  //       inputs: [{ name: "", type: "uint256" }],
+  //       name: "tickets",
+  //       outputs: [
+  //         { name: "travelDescription", type: "string" },
+  //         { name: "amount", type: "uint256" },
+  //         { name: "isUsed", type: "bool" }
+  //       ],
+  //       payable: false,
+  //       stateMutability: "view",
+  //       type: "function"
+  //     },
+  //     {
+  //       constant: true,
+  //       inputs: [],
+  //       name: "busStopCount",
+  //       outputs: [{ name: "", type: "uint256" }],
+  //       payable: false,
+  //       stateMutability: "view",
+  //       type: "function"
+  //     },
+  //     {
+  //       constant: false,
+  //       inputs: [{ name: "description", type: "string" }],
+  //       name: "purchaseTicket",
+  //       outputs: [{ name: "", type: "uint256" }],
+  //       payable: true,
+  //       stateMutability: "payable",
+  //       type: "function"
+  //     },
+  //     {
+  //       constant: false,
+  //       inputs: [{ name: "index", type: "uint256" }],
+  //       name: "completeTrip",
+  //       outputs: [],
+  //       payable: false,
+  //       stateMutability: "nonpayable",
+  //       type: "function"
+  //     },
+  //     {
+  //       constant: false,
+  //       inputs: [
+  //         { name: "tripIndex", type: "uint256" },
+  //         { name: "ticketIndex", type: "uint256" }
+  //       ],
+  //       name: "approveTrip",
+  //       outputs: [],
+  //       payable: false,
+  //       stateMutability: "nonpayable",
+  //       type: "function"
+  //     },
+  //     {
+  //       constant: true,
+  //       inputs: [{ name: "", type: "uint256" }],
+  //       name: "routeDescription",
+  //       outputs: [{ name: "", type: "bytes32" }],
+  //       payable: false,
+  //       stateMutability: "view",
+  //       type: "function"
+  //     },
+  //     {
+  //       constant: true,
+  //       inputs: [{ name: "", type: "uint256" }],
+  //       name: "trips",
+  //       outputs: [
+  //         { name: "tripDescription", type: "string" },
+  //         { name: "startDateTime", type: "uint256" },
+  //         { name: "amount", type: "uint256" },
+  //         { name: "approversCount", type: "uint256" },
+  //         { name: "isComplete", type: "bool" },
+  //         { name: "reportedArrivalTimes", type: "uint256" }
+  //       ],
+  //       payable: false,
+  //       stateMutability: "view",
+  //       type: "function"
+  //     },
+  //     {
+  //       constant: false,
+  //       inputs: [
+  //         { name: "tripIndex", type: "uint256" },
+  //         { name: "busStop", type: "bytes32" },
+  //         { name: "arrivalTime", type: "uint256" }
+  //       ],
+  //       name: "arrival",
+  //       outputs: [],
+  //       payable: false,
+  //       stateMutability: "nonpayable",
+  //       type: "function"
+  //     },
+  //     {
+  //       inputs: [
+  //         { name: "creator", type: "address" },
+  //         { name: "route", type: "string" },
+  //         { name: "count", type: "uint256" },
+  //         { name: "description", type: "bytes32[]" }
+  //       ],
+  //       payable: false,
+  //       stateMutability: "nonpayable",
+  //       type: "constructor"
+  //     },
+  //     {
+  //       anonymous: false,
+  //       inputs: [{ indexed: false, name: "index", type: "uint256" }],
+  //       name: "ValueLogger",
+  //       type: "event"
+  //     }
+  //   ]);
+  //   const routeCo = routeContract.at(
+  //     "0x2fCA6db231a8912cF3E852CE493aa86CCFa4cA42"
+  //   );
+  //   const valueEvent = routeCo.ValueLogger;
+  //   console.log(Route);
+  //   valueEvent.watch((error, result) => {
+  //     console.log(result.args.index);
+  //   });
+  // }
 
   render() {
     return (
