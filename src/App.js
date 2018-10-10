@@ -12,12 +12,12 @@ class App extends Component {
     RouteID: "",
     stopCount: 0,
     Description: "",
-    value4: "",
-    value5: "",
-    value6: 0,
-    value7: 0,
+    inputDescription: "",
+    buyTicket: "",
+    ticketPrice: 0,
+    ticketNumber: 0,
     value8: 0,
-    value9: 0,
+    value: 0,
     tripIndex: 0,
     busStopName: "",
     arrivalTime: 0,
@@ -58,7 +58,10 @@ class App extends Component {
     this.setState({ message: `Creating a new trip...` });
 
     await Route.methods
-      .createTrip(this.state.value4, Math.round(new Date().getTime() / 1000))
+      .createTrip(
+        this.state.inputDescription,
+        Math.round(new Date().getTime() / 1000)
+      )
       .send({ from: accounts[0] });
 
     this.setState({ message: `New Trip created` });
@@ -71,10 +74,10 @@ class App extends Component {
     this.setState({ message: `Generating your ticket...` });
 
     await Route.methods
-      .purchaseTicket(this.state.value5)
+      .purchaseTicket(this.state.buyTicket)
       .send({
         from: accounts[0],
-        value: web3.utils.toWei(this.state.value6, "ether")
+        value: web3.utils.toWei(this.state.ticketPrice, "ether")
       })
       .then(s => {
         console.log(s);
@@ -93,7 +96,7 @@ class App extends Component {
     const accounts = await web3.eth.getAccounts();
     this.setState({ message: `Completing the ticket...` });
 
-    await Route.methods.completeTrip(this.state.value7).send({
+    await Route.methods.completeTrip(this.state.ticketNumber).send({
       from: accounts[0]
     });
 
@@ -107,7 +110,7 @@ class App extends Component {
     const accounts = await web3.eth.getAccounts();
     this.setState({ message: `Approving your ticket...` });
 
-    await Route.methods.approveTrip(this.state.value8, this.state.value9).send({
+    await Route.methods.approveTrip(this.state.value8, this.state.value).send({
       from: accounts[0]
     });
 
@@ -188,10 +191,10 @@ class App extends Component {
           <div>
             <label>Input Description about the trip:</label>
             <input
-              value4={this.state.value4}
+              inputDescription={this.state.inputDescription}
               placeholder="string"
               onChange={event => {
-                this.setState({ value4: event.target.value });
+                this.setState({ inputDescription: event.target.value });
               }}
             />
             <br />
@@ -207,19 +210,19 @@ class App extends Component {
           <div>
             <label>Input Description about the trip:</label>
             <input
-              value5={this.state.value5}
+              buyTicket={this.state.buyTicket}
               placeholder="string"
               onChange={event => {
-                this.setState({ value5: event.target.value });
+                this.setState({ buyTicket: event.target.value });
               }}
             />
             <br />
             <label>Price of the ticket:</label>
             <input
-              value6={this.state.value6}
+              ticketPrice={this.state.ticketPrice}
               placeholder="int"
               onChange={event => {
-                this.setState({ value6: event.target.value });
+                this.setState({ ticketPrice: event.target.value });
               }}
             />
             <br />
@@ -234,10 +237,10 @@ class App extends Component {
           <div>
             <label>Input ticket Number:</label>
             <input
-              value7={this.state.value7}
+              ticketNumber={this.state.ticketNumber}
               placeholder="int"
               onChange={event => {
-                this.setState({ value7: event.target.value });
+                this.setState({ ticketNumber: event.target.value });
               }}
             />
             <br />
@@ -261,10 +264,10 @@ class App extends Component {
             <br />
             <label>Input Ticket Number:</label>
             <input
-              value9={this.state.value9}
+              value={this.state.value}
               placeholder="int"
               onChange={event => {
-                this.setState({ value9: event.target.value });
+                this.setState({ value: event.target.value });
               }}
             />
             <br />
