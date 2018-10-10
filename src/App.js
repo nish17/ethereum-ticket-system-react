@@ -72,7 +72,7 @@ class App extends Component {
     const accounts = await web3.eth.getAccounts();
     let returnedValue;
     this.setState({ message: `Generating your ticket...` });
-
+    const start_time = performance.now();
     await Route.methods
       .purchaseTicket(this.state.buyTicket)
       .send({
@@ -83,11 +83,12 @@ class App extends Component {
         console.log(s);
         returnedValue = s.events.ValueLogger.returnValues.index;
       });
-
+    const end_time = performance.now();
     this.setState({
       message: `Ticket Purchased, and your ticket number is ${returnedValue} and your tripID is ${
         this.state.NumberOfTrips
-      }.`
+      }. \nIt took ${Math.floor((end_time - start_time) / 1000) %
+        60} seconds to book the ticket`
     });
   };
 
@@ -292,7 +293,7 @@ class App extends Component {
             <label>Bus Stop Name:</label>
             <input
               busStopName={this.state.busStopName}
-              placeholder="int"
+              placeholder="string"
               onChange={event => {
                 this.setState({ busStopName: event.target.value });
               }}
