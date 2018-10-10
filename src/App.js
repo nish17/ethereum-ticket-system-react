@@ -151,7 +151,7 @@ class App extends Component {
         </p>
         <hr />
 
-        <form onSubmit={this.onSubmit1}>
+        <form id="form1" name="routeForm" onSubmit={this.onSubmit1}>
           <h4>Create Route</h4>
           <div>
             <label>Route ID:</label>
@@ -188,7 +188,7 @@ class App extends Component {
         <hr />
         <h4>Create Trip on the created routes</h4>
         <p>Trips Registered: {this.state.NumberOfTrips}</p>
-        <form onSubmit={this.onSubmit2}>
+        <form id="form2" name="tripForm" onSubmit={this.onSubmit2}>
           <div>
             <label>Input Description about the trip:</label>
             <input
@@ -207,7 +207,11 @@ class App extends Component {
         <hr />
         <h4>Purchase Ticket</h4>
         <p>Total tickets purchased: {this.state.NumberOfTickets}</p>
-        <form onSubmit={this.onSubmit3}>
+        <form
+          id="purchase-form"
+          name="purhcaseTicketForm"
+          onSubmit={this.onSubmit3}
+        >
           <div>
             <label>Input Description about the trip:</label>
             <input
@@ -234,7 +238,7 @@ class App extends Component {
 
         <hr />
         <h4>Complete Trip</h4>
-        <form onSubmit={this.onSubmit4}>
+        <form id="form4" name="completeTripForm" onSubmit={this.onSubmit4}>
           <div>
             <label>Input ticket Number:</label>
             <input
@@ -252,7 +256,7 @@ class App extends Component {
 
         <hr />
         <h4>Approve Trip</h4>
-        <form onSubmit={this.onSubmit5}>
+        <form id="form5" name="ApproveTripForm" onSubmit={this.onSubmit5}>
           <div>
             <label>Input tripID:</label>
             <input
@@ -279,7 +283,7 @@ class App extends Component {
 
         <hr />
         <h4>Arrival at the stop</h4>
-        <form onSubmit={this.onSubmit6}>
+        <form id="form6" name="ArrivalForm" onSubmit={this.onSubmit6}>
           <div>
             <label>Input tripID:</label>
             <input
