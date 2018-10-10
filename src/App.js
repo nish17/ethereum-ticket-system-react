@@ -24,7 +24,11 @@ class App extends Component {
       .getDeployedRoutes()
       .call();
     // const balance = await web3.eth.get
-    this.setState({ manager, DeployedRoutes });
+    const NumberOfTrips = await RouteCreator.methods.getNumberOfTrips().call();
+    const NumberOfTickets = await RouteCreator.methods
+      .getNumberOfTickets()
+      .call();
+    this.setState({ manager, DeployedRoutes, NumberOfTrips, NumberOfTickets });
   }
 
   onSubmit1 = async event => {
@@ -74,7 +78,9 @@ class App extends Component {
       });
 
     this.setState({
-      message: `Ticket Purchased, and your ticket number is ${returnedValue}.`
+      message: `Ticket Purchased, and your ticket number is ${returnedValue} and your tripID is ${
+        this.state.NumberOfTrips
+      }.`
     });
   };
 
@@ -135,6 +141,7 @@ class App extends Component {
         </form>
         <hr />
         <h4>Create Trip on the created routes</h4>
+        <p>Trips Registered: {this.state.NumberOfTrips}</p>
         <form onSubmit={this.onSubmit2}>
           <div>
             <label>Input Description about the trip:</label>
@@ -151,6 +158,7 @@ class App extends Component {
 
         <hr />
         <h4>Purchase Ticket</h4>
+        <p>Total tickets purchased: {this.state.NumberOfTickets}</p>
         <form onSubmit={this.onSubmit3}>
           <div>
             <label>Input Description about the trip:</label>
