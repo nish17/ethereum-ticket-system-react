@@ -4,10 +4,16 @@ const puppeteer = require("puppeteer");
   try {
     const browser = await puppeteer.launch({
       headless: false,
-      executablePath: "/usr/bin/google-chrome-stable",
-      devtools: true,
-      args: ["--remote-debugging-port=9222"]
+
+      executablePath: "/opt/google/chrome/google-chrome",
+      args: [
+        "--diable-extensions-except= /home/nish/.config/google-chrome/Default/Extensions/nkbihfbeogaeaoehlefnkodbefgpgknn/4.13.0_0/manifest.json"
+      ],
+      devtools: true
+      // args: ["--remote-debugging-port=9222"]
     });
+    // const browserWSEndpoint = browser.wsEndpoint();
+    // console.log(browserWSEndpoint);
     const page = await browser.newPage();
     page.setUserAgent(
       "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
