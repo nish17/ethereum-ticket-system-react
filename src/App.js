@@ -15,6 +15,9 @@ class App extends Component {
     value4: "",
     value5: "",
     value6: 0,
+    value7: 0,
+    value8: 0,
+    value9: 0,
     message: ""
   };
 
@@ -24,10 +27,8 @@ class App extends Component {
       .getDeployedRoutes()
       .call();
     // const balance = await web3.eth.get
-    const NumberOfTrips = await RouteCreator.methods.getNumberOfTrips().call();
-    const NumberOfTickets = await RouteCreator.methods
-      .getNumberOfTickets()
-      .call();
+    const NumberOfTrips = await Route.methods.getNumberOfTrips().call();
+    const NumberOfTickets = await Route.methods.getNumberOfTickets().call();
     this.setState({ manager, DeployedRoutes, NumberOfTrips, NumberOfTickets });
   }
 
@@ -87,11 +88,27 @@ class App extends Component {
   onSubmit4 = async event => {
     event.preventDefault();
     const accounts = await web3.eth.getAccounts();
-    this.setState({ message: `Approving your ticket...` });
+    this.setState({ message: `Completing the ticket...` });
 
     await Route.methods.completeTrip(this.state.value7).send({
       from: accounts[0]
     });
+
+    this.setState({
+      message: `Trip Completed!`
+    });
+  };
+
+  onSubmit5 = async event => {
+    event.preventDefault();
+    const accounts = await web3.eth.getAccounts();
+    this.setState({ message: `Approving your ticket...` });
+
+    await Route.methods
+      .completeTrip(this.state.value8, this.state.value9)
+      .send({
+        from: accounts[0]
+      });
 
     this.setState({
       message: `Trip Approved`
@@ -120,6 +137,7 @@ class App extends Component {
                 this.setState({ value1: event.target.value });
               }}
             />
+            <br />
             <label>Count:</label>
             <input
               value2={this.state.value2}
@@ -128,6 +146,7 @@ class App extends Component {
                 this.setState({ value2: event.target.value });
               }}
             />
+            <br />
             <label>Description:</label>
             <input
               value3={this.state.value3}
@@ -136,8 +155,10 @@ class App extends Component {
                 this.setState({ value3: event.target.value });
               }}
             />
+            <br />
           </div>
           <button>Enter</button>
+          <br />
         </form>
         <hr />
         <h4>Create Trip on the created routes</h4>
@@ -152,8 +173,10 @@ class App extends Component {
                 this.setState({ value4: event.target.value });
               }}
             />
+            <br />
           </div>
           <button>Enter</button>
+          <br />
         </form>
 
         <hr />
@@ -169,6 +192,7 @@ class App extends Component {
                 this.setState({ value5: event.target.value });
               }}
             />
+            <br />
             <label>Price of the ticket:</label>
             <input
               value6={this.state.value6}
@@ -177,8 +201,10 @@ class App extends Component {
                 this.setState({ value6: event.target.value });
               }}
             />
+            <br />
           </div>
           <button>Enter</button>
+          <br />
         </form>
 
         <hr />
@@ -193,8 +219,37 @@ class App extends Component {
                 this.setState({ value7: event.target.value });
               }}
             />
+            <br />
           </div>
           <button>Enter</button>
+          <br />
+        </form>
+
+        <hr />
+        <h4>Approve Trip</h4>
+        <form onSubmit={this.onSubmit5}>
+          <div>
+            <label>Input tripID:</label>
+            <input
+              value8={this.state.value8}
+              placeholder="int"
+              onChange={event => {
+                this.setState({ value8: event.target.value });
+              }}
+            />
+            <br />
+            <label>Input Ticket Number:</label>
+            <input
+              value9={this.state.value9}
+              placeholder="int"
+              onChange={event => {
+                this.setState({ value9: event.target.value });
+              }}
+            />
+            <br />
+          </div>
+          <button>Enter</button>
+          <br />
         </form>
 
         <hr />
