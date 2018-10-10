@@ -9,15 +9,18 @@ class App extends Component {
   state = {
     manager: "",
     DeployedRoutes: [],
-    value1: "",
-    value2: 0,
-    value3: "",
+    RouteID: "",
+    stopCount: 0,
+    Description: "",
     value4: "",
     value5: "",
     value6: 0,
     value7: 0,
     value8: 0,
     value9: 0,
+    tripIndex: 0,
+    busStopName: "",
+    arrivalTime: 0,
     message: ""
   };
 
@@ -39,8 +42,8 @@ class App extends Component {
     this.setState({ message: `Creating a new route...` });
 
     await RouteCreator.methods
-      .createRoute(this.state.value1, this.state.value2, [
-        web3.utils.fromAscii(this.state.value3)
+      .createRoute(this.state.RouteID, this.state.stopCount, [
+        web3.utils.fromAscii(this.state.Description)
       ])
       .send({
         from: accounts[0]
@@ -104,14 +107,32 @@ class App extends Component {
     const accounts = await web3.eth.getAccounts();
     this.setState({ message: `Approving your ticket...` });
 
+    await Route.methods.approveTrip(this.state.value8, this.state.value9).send({
+      from: accounts[0]
+    });
+
+    this.setState({
+      message: `Trip Approved`
+    });
+  };
+
+  onSubmit6 = async event => {
+    event.preventDefault();
+    const accounts = await web3.eth.getAccounts();
+    this.setState({ message: `Arrival request` });
+
     await Route.methods
-      .completeTrip(this.state.value8, this.state.value9)
+      .arrival(
+        this.state.tripIndex,
+        web3.utils.fromAscii(this.state.busStopName),
+        this.state.arrivalTime
+      )
       .send({
         from: accounts[0]
       });
 
     this.setState({
-      message: `Trip Approved`
+      message: `Noted! Thanks for travelling with us.`
     });
   };
 
@@ -131,28 +152,28 @@ class App extends Component {
           <div>
             <label>Route ID:</label>
             <input
-              value1={this.state.value1}
+              RouteID={this.state.RouteID}
               placeholder="int"
               onChange={event => {
-                this.setState({ value1: event.target.value });
+                this.setState({ RouteID: event.target.value });
               }}
             />
             <br />
             <label>Count:</label>
             <input
-              value2={this.state.value2}
+              stopCount={this.state.stopCount}
               placeholder="int"
               onChange={event => {
-                this.setState({ value2: event.target.value });
+                this.setState({ stopCount: event.target.value });
               }}
             />
             <br />
             <label>Description:</label>
             <input
-              value3={this.state.value3}
+              Description={this.state.Description}
               placeholder="string[]"
               onChange={event => {
-                this.setState({ value3: event.target.value });
+                this.setState({ Description: event.target.value });
               }}
             />
             <br />
@@ -244,6 +265,42 @@ class App extends Component {
               placeholder="int"
               onChange={event => {
                 this.setState({ value9: event.target.value });
+              }}
+            />
+            <br />
+          </div>
+          <button>Enter</button>
+          <br />
+        </form>
+
+        <hr />
+        <h4>Arrival at the stop</h4>
+        <form onSubmit={this.onSubmit6}>
+          <div>
+            <label>Input tripID:</label>
+            <input
+              tripIndex={this.state.tripIndex}
+              placeholder="int"
+              onChange={event => {
+                this.setState({ tripIndex: event.target.value });
+              }}
+            />
+            <br />
+            <label>Bus Stop Name:</label>
+            <input
+              busStopName={this.state.busStopName}
+              placeholder="int"
+              onChange={event => {
+                this.setState({ busStopName: event.target.value });
+              }}
+            />
+            <br />
+            <label>Arrival Time:</label>
+            <input
+              arrivalTime={this.state.arrivalTime}
+              placeholder="int"
+              onChange={event => {
+                this.setState({ arrivalTime: event.target.value });
               }}
             />
             <br />
