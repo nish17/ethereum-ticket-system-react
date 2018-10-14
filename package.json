@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "dappeteer": "^0.2.1",
     "jquery": "^3.3.1",
     "puppeteer": "git+https://github.com/GoogleChrome/puppeteer.git",
     "react": "^16.5.2",
