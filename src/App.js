@@ -104,7 +104,7 @@ class App extends Component {
   onSubmit4 = async event => {
     event.preventDefault();
     const accounts = await web3.eth.getAccounts();
-    this.setState({ message: `Completing the ticket...` });
+    this.setState({ message: `Completing the Trip...` });
 
     await Route.methods.completeTrip(this.state.ticketnumber).send({
       from: accounts[0]
@@ -167,7 +167,7 @@ class App extends Component {
           <form id="form1" name="routeForm" onSubmit={this.onSubmit1}>
             <Header as="h4"> Create Route</Header>
             <div>
-              <label>Route ID:</label>
+              <Label>Route ID:</Label>
               <input
                 routeid={this.state.routeid}
                 placeholder="int"
@@ -176,7 +176,7 @@ class App extends Component {
                 }}
               />
               <br />
-              <label>Count:</label>
+              <Label>Count:</Label>
               <input
                 stopcount={this.state.stopcount}
                 placeholder="int"
@@ -185,7 +185,7 @@ class App extends Component {
                 }}
               />
               <br />
-              <label>description:</label>
+              <Label>description:</Label>
               <input
                 description={this.state.description}
                 placeholder="string[]"
@@ -195,7 +195,7 @@ class App extends Component {
               />
               <br />
             </div>
-            <Button animated="fade">
+            <Button animated="fade" positive>
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
                 <Icon name="arrow right" />
@@ -208,7 +208,7 @@ class App extends Component {
           <Header as="h4">Trips Registered: {this.state.NumberOfTrips}</Header>
           <form id="form2" name="tripForm" onSubmit={this.onSubmit2}>
             <div>
-              <label>Input description about the trip:</label>
+              <Label>Input description about the trip:</Label>
               <input
                 inputdescription={this.state.inputdescription}
                 placeholder="string"
@@ -218,7 +218,7 @@ class App extends Component {
               />
               <br />
             </div>
-            <Button animated="fade">
+            <Button animated="fade" positive>
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
                 <Icon name="arrow right" />
@@ -238,7 +238,7 @@ class App extends Component {
             onSubmit={this.onSubmit3}
           >
             <div>
-              <label>Input description about the trip:</label>
+              <Label>Input description about the trip:</Label>
               <input
                 buyticket={this.state.buyticket}
                 placeholder="string"
@@ -247,27 +247,27 @@ class App extends Component {
                 }}
               />
               <br />
-              <label>Price of the ticket:</label>
-              {/* <input
-              ticketprice={this.state.ticketprice}
-              placeholder="int"
-              onChange={event => {
-                this.setState({ ticketprice: event.target.value });
-              }} 
-            />
-              */}
-              <Input labelPosition="right" type="text" placeholder="Amount">
-                <Label basic>ETH ⧫</Label>
+              <Label>Price of the ticket:</Label>
+              <Input placeholder="int">
                 <input
+                  ticketprice={this.state.ticketprice}
                   onChange={event => {
                     this.setState({ ticketprice: event.target.value });
                   }}
                 />
+              </Input>
+              <Input LabelPosition="right" type="text" placeholder="Amount">
+                <Label basic>ETH ⧫</Label>
+                {/* <input
+                  onChange={event => {
+                    this.setState({ ticketprice: event.target.value });
+                  }} */}
+                {/* /> */}
                 <Label>.00</Label>
               </Input>
               <br />
             </div>
-            <Button animated="fade">
+            <Button animated="fade" positive>
               <Button.Content visible>Purchase Ticket</Button.Content>
               <Button.Content hidden>
                 {this.state.ticketprice} ether
@@ -281,7 +281,7 @@ class App extends Component {
 
           <form id="form4" name="completeTripForm" onSubmit={this.onSubmit4}>
             <div>
-              <label>Input ticket Number:</label>
+              <Label>Input ticket Number:</Label>
               <input
                 ticketnumber={this.state.ticketnumber}
                 placeholder="int"
@@ -291,7 +291,7 @@ class App extends Component {
               />
               <br />
             </div>
-            <Button animated="fade">
+            <Button animated="fade" positive>
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
                 <Icon name="arrow right" />
@@ -304,7 +304,7 @@ class App extends Component {
           <Header as="h4">Approve Trip</Header>
           <form id="form5" name="ApproveTripForm" onSubmit={this.onSubmit5}>
             <div>
-              <label>Input tripID:</label>
+              <Label>Input tripID:</Label>
               <input
                 value8={this.state.value8}
                 placeholder="int"
@@ -313,7 +313,7 @@ class App extends Component {
                 }}
               />
               <br />
-              <label>Input Ticket Number:</label>
+              <Label>Input Ticket Number:</Label>
               <input
                 value={this.state.value}
                 placeholder="int"
@@ -323,7 +323,7 @@ class App extends Component {
               />
               <br />
             </div>
-            <Button animated="fade">
+            <Button animated="fade" positive>
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
                 <Icon name="arrow right" />
@@ -337,7 +337,7 @@ class App extends Component {
 
           <form id="form6" name="ArrivalForm" onSubmit={this.onSubmit6}>
             <div>
-              <label>Input tripID:</label>
+              <Label>Input tripID:</Label>
               <input
                 tripindex={this.state.tripindex}
                 placeholder="int"
@@ -346,7 +346,7 @@ class App extends Component {
                 }}
               />
               <br />
-              <label>Bus Stop Name:</label>
+              <Label>Bus Stop Name:</Label>
               <input
                 busstopname={this.state.busstopname}
                 placeholder="string"
@@ -355,7 +355,7 @@ class App extends Component {
                 }}
               />
               <br />
-              <label>Arrival Time:</label>
+              <Label>Arrival Time:</Label>
               <input
                 arrivaltime={this.state.arrivaltime}
                 placeholder="int"
@@ -365,7 +365,7 @@ class App extends Component {
               />
               <br />
             </div>
-            <Button animated="fade">
+            <Button animated="fade" positive>
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
                 <Icon name="arrow right" />
