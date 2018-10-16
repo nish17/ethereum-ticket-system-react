@@ -1,5 +1,5 @@
-import web3 from "./web3.js";
-
+// import web3 from "./web3.js";
+const web3 = require("./web3.js");
 const address = "0xf0e42e951719EE37AFeBDc39C470bE32b6e03967";
 const abi = [
   {
@@ -159,4 +159,5 @@ const abi = [
   }
 ];
 
-export default new web3.eth.Contract(abi, address);
+// export default new web3.eth.Contract(abi, address);
+module.exports = new web3.eth.Contract(abi, address);
