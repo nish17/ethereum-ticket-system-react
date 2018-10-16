@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./App.css";
 import web3 from "./web3.js";
+// import Web3 from "web3";
 // import logo from "./logo.svg";
+// import ganache from "ganache-cli";
 import Route from "./Route.js";
 import "semantic-ui-css/semantic.min.css";
 import RouteCreator from "./RouteCreator.js";
@@ -46,8 +48,14 @@ class App extends Component {
 
   onSubmit1 = async event => {
     event.preventDefault();
-    const accounts = await web3.eth.getAccounts();
-    // console.log(accounts);
+    let accounts = await web3.eth.getAccounts();
+    console.log(accounts);
+    // if (accounts === undefined) {
+    //   web3 = new Web3(ganache.provider());
+    //   console.log(accounts);
+    //   accounts = await web3.eth.getAccounts();
+    // }
+
     this.setState({ message: `Creating a new route...` });
 
     await RouteCreator.methods
@@ -79,6 +87,7 @@ class App extends Component {
   onSubmit3 = async event => {
     event.preventDefault();
     const accounts = await web3.eth.getAccounts();
+    console.log(accounts);
     let returnedValue;
     this.setState({ message: `Generating your ticket...` });
     const start_time = performance.now();
