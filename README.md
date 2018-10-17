@@ -16,6 +16,6 @@
 
 ## For STRESS TESTING:
 
-#### 1.Run `ganache-cli -a 1000` in the terminal for gettings 1000 distinct accounts with ~100 ether.
+#### 1. Run `ganache-cli -a 1000` in the terminal for gettings 1000 distinct accounts with ~100 ether.
 
-#### 2.In the new window of the terminal run `truffle test/test.js` it will automatically use the accounts from ganache and run all the tests.
+#### 2. In the new window of the terminal run `truffle test/test.js` it will automatically use the accounts from ganache and run all the tests.
