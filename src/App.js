@@ -215,8 +215,7 @@ class App extends Component {
           <hr />
           <Header as="h4">Create Trip on the created routes</Header>
           <Header as="h4">Trips Registered: {this.state.NumberOfTrips}</Header>
-          {/* <form id="form2" name="tripForm" onSubmit={this.onSubmit2}>
-            <div> */}
+
           <Form id="form2" name="tripForm" onSubmit={this.onSubmit2}>
             <Form.Field>
               <Label>Input description about the trip:</Label>
@@ -228,7 +227,6 @@ class App extends Component {
                 }}
               />
               <br />
-              {/* </div> */}
             </Form.Field>
             <Button animated="fade" positive>
               <Button.Content visible>Submit</Button.Content>
@@ -238,19 +236,12 @@ class App extends Component {
             </Button>
           </Form>
           <br />
-          {/* </form> */}
 
           <hr />
           <Header as="h4">Purchase Ticket</Header>
           <Header as="h4">
             Total tickets purchased: {this.state.NumberOfTickets}
           </Header>
-          {/* <form
-            id="purchase-form"
-            name="purhcaseTicketForm"
-            onSubmit={this.onSubmit3}
-          >
-            <div> */}
           <Form
             id="purchase-form"
             name="purhcaseTicketForm"
@@ -279,11 +270,6 @@ class App extends Component {
               </Input>
               <Input LabelPosition="right" type="text" placeholder="Amount">
                 <Label basic>ETH ⧫</Label>
-                {/* <input
-                  onChange={event => {
-                    this.setState({ ticketprice: event.target.value });
-                  }} */}
-                {/* /> */}
                 <Label>.00</Label>
               </Input>
             </Form.Field>
@@ -297,7 +283,6 @@ class App extends Component {
             </Button>
             <br />
           </Form>
-          {/* </form> */}
 
           <hr />
           <Header as="h4">Complete Trip</Header>
@@ -325,9 +310,6 @@ class App extends Component {
           <Header as="h4">Approve Trip</Header>
           <Form id="form5" name="ApproveTripForm" onSubmit={this.onSubmit5}>
             <Form.Field>
-              {/* <form id="form5" name="ApproveTripForm" onSubmit={this.onSubmit5}>
-            <div> */}
-              {/* <Form.Field> */}
               <Label>Input tripID:</Label>
               <input
                 value8={this.state.value8}
@@ -347,7 +329,6 @@ class App extends Component {
               }}
             />
             <br />
-            {/* </div> */}
             <Button animated="fade" positive>
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
@@ -356,13 +337,10 @@ class App extends Component {
             </Button>
             <br />
           </Form>
-          {/* </form> */}
 
           <hr />
           <Header as="h4">Arrival at the stop</Header>
           <Form id="form6" name="ArrivalForm" onSubmit={this.onSubmit6}>
-            {/* <form id="form6" name="ArrivalForm" onSubmit={this.onSubmit6}> */}
-            {/* <div> */}
             <Form.Field>
               <Label>Input tripID:</Label>
               <input
@@ -396,7 +374,6 @@ class App extends Component {
               />
             </Form.Field>
             <br />
-            {/* </div> */}
             <Button animated="fade" positive>
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
@@ -405,7 +382,6 @@ class App extends Component {
             </Button>
             <br />
           </Form>
-          {/* </form> */}
 
           <hr />
           <h3>{this.state.message}</h3>
