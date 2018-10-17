@@ -12,6 +12,7 @@ import {
   Icon,
   Input,
   Label,
+  Form,
   Container,
   Header
 } from "semantic-ui-react";
@@ -173,9 +174,8 @@ class App extends Component {
             deployed to the network.
           </p>
           <hr />
-          <form id="form1" name="routeForm" onSubmit={this.onSubmit1}>
-            <Header as="h4"> Create Route</Header>
-            <div>
+          <Form id="form1" name="routeForm" onSubmit={this.onSubmit1}>
+            <Form.Field>
               <Label>Route ID:</Label>
               <input
                 routeid={this.state.routeid}
@@ -183,8 +183,9 @@ class App extends Component {
                 onChange={event => {
                   this.setState({ routeid: event.target.value });
                 }}
-              />
-              <br />
+              />{" "}
+            </Form.Field>
+            <Form.Field>
               <Label>Count:</Label>
               <input
                 stopcount={this.state.stopcount}
@@ -193,7 +194,8 @@ class App extends Component {
                   this.setState({ stopcount: event.target.value });
                 }}
               />
-              <br />
+            </Form.Field>
+            <Form.Field>
               <Label>description:</Label>
               <input
                 description={this.state.description}
@@ -202,21 +204,21 @@ class App extends Component {
                   this.setState({ description: event.target.value });
                 }}
               />
-              <br />
-            </div>
+            </Form.Field>
             <Button animated="fade" positive>
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
                 <Icon name="arrow right" />
               </Button.Content>
             </Button>
-            <br />
-          </form>
+          </Form>
           <hr />
           <Header as="h4">Create Trip on the created routes</Header>
           <Header as="h4">Trips Registered: {this.state.NumberOfTrips}</Header>
-          <form id="form2" name="tripForm" onSubmit={this.onSubmit2}>
-            <div>
+          {/* <form id="form2" name="tripForm" onSubmit={this.onSubmit2}>
+            <div> */}
+          <Form id="form2" name="tripForm" onSubmit={this.onSubmit2}>
+            <Form.Field>
               <Label>Input description about the trip:</Label>
               <input
                 inputdescription={this.state.inputdescription}
@@ -226,27 +228,35 @@ class App extends Component {
                 }}
               />
               <br />
-            </div>
+              {/* </div> */}
+            </Form.Field>
             <Button animated="fade" positive>
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
                 <Icon name="arrow right" />
               </Button.Content>
             </Button>
-            <br />
-          </form>
+          </Form>
+          <br />
+          {/* </form> */}
 
           <hr />
           <Header as="h4">Purchase Ticket</Header>
           <Header as="h4">
             Total tickets purchased: {this.state.NumberOfTickets}
           </Header>
-          <form
+          {/* <form
             id="purchase-form"
             name="purhcaseTicketForm"
             onSubmit={this.onSubmit3}
           >
-            <div>
+            <div> */}
+          <Form
+            id="purchase-form"
+            name="purhcaseTicketForm"
+            onSubmit={this.onSubmit3}
+          >
+            <Form.Field>
               <Label>Input description about the trip:</Label>
               <input
                 buyticket={this.state.buyticket}
@@ -255,7 +265,9 @@ class App extends Component {
                   this.setState({ buyticket: event.target.value });
                 }}
               />
-              <br />
+            </Form.Field>
+            <br />
+            <Form.Field>
               <Label>Price of the ticket:</Label>
               <Input placeholder="int">
                 <input
@@ -274,8 +286,9 @@ class App extends Component {
                 {/* /> */}
                 <Label>.00</Label>
               </Input>
-              <br />
-            </div>
+            </Form.Field>
+            <br />
+            {/* </div> */}
             <Button animated="fade" positive>
               <Button.Content visible>Purchase Ticket</Button.Content>
               <Button.Content hidden>
@@ -283,13 +296,13 @@ class App extends Component {
               </Button.Content>
             </Button>
             <br />
-          </form>
+          </Form>
+          {/* </form> */}
 
           <hr />
           <Header as="h4">Complete Trip</Header>
-
-          <form id="form4" name="completeTripForm" onSubmit={this.onSubmit4}>
-            <div>
+          <Form id="form4" name="completeTripForm" onSubmit={this.onSubmit4}>
+            <Form.Field>
               <Label>Input ticket Number:</Label>
               <input
                 ticketnumber={this.state.ticketnumber}
@@ -298,8 +311,8 @@ class App extends Component {
                   this.setState({ ticketnumber: event.target.value });
                 }}
               />
-              <br />
-            </div>
+            </Form.Field>
+            <br />
             <Button animated="fade" positive>
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
@@ -307,12 +320,14 @@ class App extends Component {
               </Button.Content>
             </Button>
             <br />
-          </form>
-
+          </Form>
           <hr />
           <Header as="h4">Approve Trip</Header>
-          <form id="form5" name="ApproveTripForm" onSubmit={this.onSubmit5}>
-            <div>
+          <Form id="form5" name="ApproveTripForm" onSubmit={this.onSubmit5}>
+            <Form.Field>
+              {/* <form id="form5" name="ApproveTripForm" onSubmit={this.onSubmit5}>
+            <div> */}
+              {/* <Form.Field> */}
               <Label>Input tripID:</Label>
               <input
                 value8={this.state.value8}
@@ -321,17 +336,18 @@ class App extends Component {
                   this.setState({ value8: event.target.value });
                 }}
               />
-              <br />
-              <Label>Input Ticket Number:</Label>
-              <input
-                value={this.state.value}
-                placeholder="int"
-                onChange={event => {
-                  this.setState({ value: event.target.value });
-                }}
-              />
-              <br />
-            </div>
+            </Form.Field>
+            <br />
+            <Label>Input Ticket Number:</Label>
+            <input
+              value={this.state.value}
+              placeholder="int"
+              onChange={event => {
+                this.setState({ value: event.target.value });
+              }}
+            />
+            <br />
+            {/* </div> */}
             <Button animated="fade" positive>
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
@@ -339,13 +355,15 @@ class App extends Component {
               </Button.Content>
             </Button>
             <br />
-          </form>
+          </Form>
+          {/* </form> */}
 
           <hr />
           <Header as="h4">Arrival at the stop</Header>
-
-          <form id="form6" name="ArrivalForm" onSubmit={this.onSubmit6}>
-            <div>
+          <Form id="form6" name="ArrivalForm" onSubmit={this.onSubmit6}>
+            {/* <form id="form6" name="ArrivalForm" onSubmit={this.onSubmit6}> */}
+            {/* <div> */}
+            <Form.Field>
               <Label>Input tripID:</Label>
               <input
                 tripindex={this.state.tripindex}
@@ -354,7 +372,9 @@ class App extends Component {
                   this.setState({ tripindex: event.target.value });
                 }}
               />
-              <br />
+            </Form.Field>
+            <br />
+            <Form.Field>
               <Label>Bus Stop Name:</Label>
               <input
                 busstopname={this.state.busstopname}
@@ -363,7 +383,9 @@ class App extends Component {
                   this.setState({ busstopname: event.target.value });
                 }}
               />
-              <br />
+            </Form.Field>
+            <br />
+            <Form.Field>
               <Label>Arrival Time:</Label>
               <input
                 arrivaltime={this.state.arrivaltime}
@@ -372,8 +394,9 @@ class App extends Component {
                   this.setState({ arrivaltime: event.target.value });
                 }}
               />
-              <br />
-            </div>
+            </Form.Field>
+            <br />
+            {/* </div> */}
             <Button animated="fade" positive>
               <Button.Content visible>Submit</Button.Content>
               <Button.Content hidden>
@@ -381,7 +404,8 @@ class App extends Component {
               </Button.Content>
             </Button>
             <br />
-          </form>
+          </Form>
+          {/* </form> */}
 
           <hr />
           <h3>{this.state.message}</h3>
